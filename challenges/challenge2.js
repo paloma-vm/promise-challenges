@@ -7,14 +7,36 @@
  *    it runs? Run the code using `node challenge2.js` and verify that your
  *    expectation was correct.
  * 
+ *  expectation: Hello there, DUCKY
+ *  actual: Hello there, Ducky
+            MAKE SCHOOL IS AWESOME!!!
+ * 
  * 
  * 2. What happens if greet() fails? Make it fail by changing 'name' to a number
  *    instead of a string. What happens? Does uppercaser() still run?
  * 
+ *  expectation: Name must be a string!
+ *              MAKE SCHOOL IS AWESOME!!!
+ * 
+ * actual:  Received an error!
+            Name must be a string!
+
+    Does uppercaser() still run? No, I don't think so.
+
+ *               
  * 
  * 3. What happens if greet() succeeds and uppercaser() fails? Modify your code
  *    to achieve this result by changing the values of 'name' and 'my_str' and
  *    run the code again.
+ *  
+ *  expectation: Hello there, Ducky
+ *               Received an error!
+ *               Argument to uppercaser must be string
+ *  
+ *  reality: 
+ *  Hello there, Ducky
+    Received an error!
+    Argument to uppercaser must be string
  * 
  * 
  * 4. Write a method that takes a string as input and returns the input string
@@ -30,7 +52,20 @@
  * 
  *******************************************************************************
  */
-
+function spacer(str) {
+  return new Promise(function(resolve, reject) {
+    setTimeout(function() {
+      if (typeof str === 'string') {
+        // char_list = list(str)
+        // spaced_str = char_list.join(' ')
+        // resolve(`${spaced_str}`);
+        resolve(str.split('').join(' '));
+      } else {
+        reject('str must be a string!');
+      }
+    }, 2000);
+  });
+}
  /**
   * Asynchronously returns a greeting for a specified name.
   * @param name The name of the person to greet.
@@ -64,15 +99,22 @@ function uppercaser(str) {
 }
 
 name = 'Ducky'
+// name = 56
+
 my_str = 'Make School is Awesome!!!'
+// my_str = 25
+str = 'foo'
 
 greet(name)
     .then((greetResult) => {
-        console.log(greetResult)
-        return uppercaser(my_str);
+        console.log(greetResult) 
+        return uppercaser(my_str); // return uppercaser(my_str)
     })
     .then((uppercaserResult) => {
-        console.log(uppercaserResult)
+        console.log(uppercaserResult) // console.log what was returned above
+    })
+    .then((spacerResult) => {
+        console.log(spacerResult)
     }).catch((err) => {
         console.log('Received an error!')
         console.log(err);
