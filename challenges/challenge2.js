@@ -56,9 +56,6 @@ function spacer(str) {
   return new Promise(function(resolve, reject) {
     setTimeout(function() {
       if (typeof str === 'string') {
-        // char_list = list(str)
-        // spaced_str = char_list.join(' ')
-        // resolve(`${spaced_str}`);
         resolve(str.split('').join(' '));
       } else {
         reject('str must be a string!');
@@ -112,9 +109,11 @@ greet(name)
     })
     .then((uppercaserResult) => {
         console.log(uppercaserResult) // console.log what was returned above
+        return spacer(my_str);
     })
     .then((spacerResult) => {
         console.log(spacerResult)
+        // do I need more code here?
     }).catch((err) => {
         console.log('Received an error!')
         console.log(err);
